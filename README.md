@@ -1,1 +1,3 @@
-# experimentalFilm 0.1.0
+# experimentalFilm
+
+Help JEFF het filmfestival te redden en de zaal te vullen!
