@@ -1,18 +1,17 @@
-@import 'mixins';
-@import 'reset';
+@import 'base';
 
 body {
   font-size: 62.5%;
   font-family: 'Helvetica neue', Helvetica, Arial, sans-serif;
+  background-color: $color-bg;
 }
 
-main {
-  @include center;
-  padding-top: 30px;
-  width: 960px;
-  font-size: 1.8em;
+.container {
+  width: 100%;
 }
 
-h1 {
-  font-size: 1.3em;
+svg {
+  width: 1250px;
+  display: block;
+  margin: 0px auto;
 }
