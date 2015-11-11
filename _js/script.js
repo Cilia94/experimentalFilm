@@ -7,11 +7,13 @@
 // or import specific polyfills
 // import {$} from './helpers/util';
 
-let $svg,
+let socket,
+  $svg,
   persons,
-  seats;
+  seats,
+  popcorns = [];
 
-import {Person, Seat} from './svg/';
+import {Person, Seat, Popcorn} from './svg/';
 
 import personObject from '../models/person.js';
 
@@ -19,11 +21,34 @@ const init = () => {
 
   $svg = $('.cinema');
 
-  let socket = io.connect('http://localhost:3000');
+  socket = io.connect('http://localhost:3000');
+
+  _boardConnect();
 
   _initSeats();
 
   _initPersons();
+
+};
+
+const _pressedButton = () => {
+
+  let count = 0;
+  let popcorn;
+
+  socket.on('pressed', (buttonPin, buttonId) => {
+
+    console.log(`Pressed button connected to pin: ${buttonPin} with id: ${buttonId}`);
+
+    count++;
+
+    popcorn = new Popcorn(buttonPin, count);
+
+    popcorns.push(popcorn);
+
+    $svg.append(popcorn.render());
+
+  });
 
 };
 
@@ -46,7 +71,7 @@ const _initSeats = () => {
   seats = [];
 
   let gridWidth = $svg.width();
-  let gridHeight = $svg.height();
+  let gridHeight = 650;
 
   for(var i = 0; i < gridWidth; i += 50){
 
@@ -66,6 +91,17 @@ const _initSeats = () => {
     }
 
   }
+
+};
+
+const _boardConnect = () => {
+
+  socket.on('boardConnect', () => {
+    $('.connected').attr('fill', 'green');
+    $('.connectedTxt').text('Connection');
+
+    _pressedButton();
+  });
 
 };
 

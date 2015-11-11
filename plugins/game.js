@@ -10,38 +10,54 @@ module.exports.register = (server, options, next) => {
   board.on('ready', () => {
 
     io.on('connection', socket => {
+      socket.emit('boardConnect');
 
-      ledUse(socket);
-      buttonUse();
+      //ledUse(socket);
+      buttonUse(socket);
 
     });
 
   });
 
-  const buttonUse = () => {
+  const buttonUse = (socket) => {
 
-    let button = new five.Button(2);
+    let button1 = new five.Button(2),
+      button2 = new five.Button(4),
+      button3 = new five.Button(7),
+      button4 = new five.Button(8),
+      button5 = new five.Button(12);
 
     board.repl.inject({
-      button: button
+      button1: button1,
+      button2: button2,
+      button3: button3,
+      button4: button4,
+      button5: button5
     });
 
-    button.on('down', () => {
-      console.log('down');
+    button1.on('up', () => {
+      socket.emit('pressed', button1.pin, button1.id);
     });
 
-    //defaults to 500ms (1/2 second) can be set ott
-    button.on('hold', () => {
-      console.log('hold');
+    button2.on('up', () => {
+      socket.emit('pressed', button2.pin, button2.id);
     });
 
-    button.on('up', () => {
-      console.log('up');
+    button3.on('up', () => {
+      socket.emit('pressed', button3.pin, button3.id);
+    });
+
+    button4.on('up', () => {
+      socket.emit('pressed', button4.pin, button4.id);
+    });
+
+    button5.on('up', () => {
+      socket.emit('pressed', button5.pin, button5.id);
     });
 
   };
 
-  const ledUse = (socket) => {
+  /*const ledUse = (socket) => {
 
     let led = new five.Led(13);
 
@@ -49,7 +65,7 @@ module.exports.register = (server, options, next) => {
       led.toggle();
     });
 
-  };
+  };*/
 
   next();
 

@@ -1,6 +1,6 @@
 'use strict';
 
-import seatTemplate from '../../_hbs/seat.hbs';
+import template from '../../_hbs/seat.hbs';
 
 export default class Seat {
 
@@ -13,7 +13,7 @@ export default class Seat {
   }
 
   render(){
-    let svgTemplate = new DOMParser().parseFromString(seatTemplate(this), 'text/xml');
+    let svgTemplate = new DOMParser().parseFromString(template(this), 'text/xml');
 
     return svgTemplate.documentElement;
   }
