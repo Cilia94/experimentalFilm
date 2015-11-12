@@ -82,7 +82,7 @@ const _initSeats = () => {
       if(seat.position.x === 100 || seat.position.x === 350 ||
         seat.position.x === 600 || seat.position.x === 850 ||
         seat.position.x === 1100){
-        //don't push in array
+        //don't push in array and do nothing
       }else {
         seats.push(seat);
         $svg.append(seat.render());

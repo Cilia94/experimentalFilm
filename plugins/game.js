@@ -27,31 +27,31 @@ module.exports.register = (server, options, next) => {
       button4 = new five.Button(8),
       button5 = new five.Button(12);
 
-    board.repl.inject({
+    /*board.repl.inject({
       button1: button1,
       button2: button2,
       button3: button3,
       button4: button4,
       button5: button5
-    });
+    });*/
 
-    button1.on('up', () => {
+    button1.on('down', () => {
       socket.emit('pressed', button1.pin, button1.id);
     });
 
-    button2.on('up', () => {
+    button2.on('down', () => {
       socket.emit('pressed', button2.pin, button2.id);
     });
 
-    button3.on('up', () => {
+    button3.on('down', () => {
       socket.emit('pressed', button3.pin, button3.id);
     });
 
-    button4.on('up', () => {
+    button4.on('down', () => {
       socket.emit('pressed', button4.pin, button4.id);
     });
 
-    button5.on('up', () => {
+    button5.on('down', () => {
       socket.emit('pressed', button5.pin, button5.id);
     });
 

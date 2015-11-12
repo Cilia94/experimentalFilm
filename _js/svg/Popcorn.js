@@ -17,11 +17,11 @@ export default class Popcorn {
 
     this.class = count;
 
-    aisle1 = 110; //pin 2 = button 1 => meest linkse gang
-    aisle2 = 360; //pin 4 = button 2 => tweede linkse gang
-    aisle3 = 610; //pin 7 = button 2 => tweede linkse gang
-    aisle4 = 860; //pin 8 = button 2 => tweede linkse gang
-    aisle5 = 1110; //pin 12 = button 2 => tweede linkse gang
+    aisle1 = 110; //pin 2 = button 1
+    aisle2 = 360; //pin 4 = button 2
+    aisle3 = 610; //pin 7 = button 3
+    aisle4 = 860; //pin 8 = button 4
+    aisle5 = 1110; //pin 12 = button 5
 
     this.position = {};
 
@@ -35,8 +35,16 @@ export default class Popcorn {
       this.position.x = aisle2;
       this.position.y = yStart;
       break;
-    default:
-      this.position.x = aisle1;
+    case 7:
+      this.position.x = aisle3;
+      this.position.y = yStart;
+      break;
+    case 8:
+      this.position.x = aisle4;
+      this.position.y = yStart;
+      break;
+    case 12:
+      this.position.x = aisle5;
       this.position.y = yStart;
       break;
     }
@@ -48,16 +56,16 @@ export default class Popcorn {
 
     speed = 5;
 
-    let tag = '.popcorn' + this.class;
+    let tag = `.popcorn${this.class}`;
 
     if(this.move){
       this.position.y -= speed;
 
       if(this.position.y > -60){
         $(tag).attr('y', this.position.y);
+        console.log(this.position.y);
       }else {
         $('.popcorn1').remove();
-        this.position.y = yStart;
         return;
       }
 
