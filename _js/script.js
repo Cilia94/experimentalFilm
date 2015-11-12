@@ -34,7 +34,6 @@ const init = () => {
 const _pressedButton = () => {
 
   let count = 0;
-  let popcorn;
 
   socket.on('pressed', (buttonPin, buttonId) => {
 
@@ -42,7 +41,7 @@ const _pressedButton = () => {
 
     count++;
 
-    popcorn = new Popcorn(buttonPin, count);
+    let popcorn = new Popcorn(buttonPin, count);
 
     popcorns.push(popcorn);
 

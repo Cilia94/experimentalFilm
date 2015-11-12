@@ -54,7 +54,6 @@ module.exports.register = (server, options, next) => {
     button5.on('down', () => {
       socket.emit('pressed', button5.pin, button5.id);
     });
-
   };
 
   /*const ledUse = (socket) => {

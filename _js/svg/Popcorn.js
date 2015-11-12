@@ -30,7 +30,6 @@ export default class Popcorn {
       this.position.x = aisle1;
       this.position.y = yStart;
       break;
-
     case 4:
       this.position.x = aisle2;
       this.position.y = yStart;
@@ -61,11 +60,10 @@ export default class Popcorn {
     if(this.move){
       this.position.y -= speed;
 
-      if(this.position.y > -60){
+      if(this.position.y >= -60){
         $(tag).attr('y', this.position.y);
-        console.log(this.position.y);
       }else {
-        $('.popcorn1').remove();
+        $(tag).remove();
         return;
       }
 
