@@ -5,6 +5,7 @@
   "main": "server.js",
   "author": "Kevin Rousseau, Manon Kindt, Cilia Vandenameele",
   "scripts": {
+    "dev": "webpack --watch & npm run serve",
     "development": "webpack --watch & npm run serve",
     "production": "webpack -d -p",
     "start": "forever --minUptime 1000 --spinSleepTime 1000 .",

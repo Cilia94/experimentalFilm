@@ -13,16 +13,30 @@ import person10 from '../../_hbs/person10.hbs';
 import person11 from '../../_hbs/person11.hbs';
 import person12 from '../../_hbs/person12.hbs';
 
+//let walkAway;
+
 export default class Person {
 
-  constructor(object, position){
+  constructor(object, position, startPosition, id){
+    this.id = id;
     this.status = object.status;
     this.type = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
     this.happy = object.happy;
     this.position = position;
+    this.walkAway = false;
+    //console.log(startPosi.y);
+    
+    //this.startPosition= {xPos,yPos};
+    this.startPosition = {};
+    this.startPosition.x = startPosition.x;
+    this.startPosition.y = startPosition.y;
+   // console.log(startPosition.x);
+    //this.startPos = startPos.x;
   }
 
   render(){
+    //console.log('render');
+    
 
     let svgTemplate;
 
@@ -68,7 +82,238 @@ export default class Person {
       break;
     }
 
+    //this.move = true;
     return svgTemplate.documentElement;
   }
+
+    _move(){
+
+      // $('.person' + '#' + this.id).attr("transform", "translate(100) rotate(-45 25 25)");
+
+      if(!this.walkAway){
+
+      if(this.position.y < (this.startPosition.y +30)){
+      this.position.y++;
+
+      $('.person' + '#' + this.id ).attr('y', this.position.y);
+
+    }else {
+
+      this.status = 1;
+
+      if(this.startPosition.x === 0 || this.startPosition.x === 50){
+        if(this.position.x < 100){
+          
+        this.position.x++;
+        $('.person' + '#' + this.id ).attr('x', this.position.x);
+
+      }else if (this.position.y < 675){
+   
+      this.position.y++;
+      $('.person' + '#' + this.id ).attr('y', this.position.y);
+
+        }else{
+
+          this.status = 2;
+          this.walkAway = true;
+        }
+      }
+
+      if(this.startPosition.x === 150 || this.startPosition.x === 200){
+        if(this.position.x > 100){
+          
+        this.position.x--;
+        $('.person' + '#' + this.id ).attr('x', this.position.x);
+
+      }else if (this.position.y < 675){
+   
+      this.position.y++;
+      $('.person' + '#' + this.id ).attr('y', this.position.y);
+
+        }else{
+
+          this.status = 2;
+          this.walkAway = true;
+        }
+      }
+
+     
+
+      if(this.startPosition.x === 250 || this.startPosition.x === 300){
+        if(this.position.x < 350){
+          
+        this.position.x++;
+        $('.person' + '#' + this.id ).attr('x', this.position.x);
+
+      }else if (this.position.y < 675){
+   
+      this.position.y++;
+      $('.person' + '#' + this.id ).attr('y', this.position.y);
+
+        }else{
+
+          this.status = 2;
+          this.walkAway = true;
+        }
+      }
+
+      if(this.startPosition.x === 400 || this.startPosition.x === 450){
+        if(this.position.x > 350){
+          
+        this.position.x--;
+        $('.person' + '#' + this.id ).attr('x', this.position.x);
+
+      }else if (this.position.y < 675){
+   
+      this.position.y++;
+      $('.person' + '#' + this.id ).attr('y', this.position.y);
+
+        }else{
+
+          this.status = 2;
+          this.walkAway = true;
+        }
+      }
+
+      if(this.startPosition.x === 500 || this.startPosition.x === 550){
+        if(this.position.x < 600){
+          
+        this.position.x++;
+        $('.person' + '#' + this.id ).attr('x', this.position.x);
+
+      }else if (this.position.y < 675){
+   
+      this.position.y++;
+      $('.person' + '#' + this.id ).attr('y', this.position.y);
+
+        }else{
+
+          this.status = 2;
+          this.walkAway = true;
+        }
+      }
+
+      if(this.startPosition.x === 650 || this.startPosition.x === 700){
+        if(this.position.x > 600){
+          
+        this.position.x--;
+        $('.person' + '#' + this.id ).attr('x', this.position.x);
+
+      }else if (this.position.y < 675){
+   
+      this.position.y++;
+      $('.person' + '#' + this.id ).attr('y', this.position.y);
+
+        }else{
+
+          this.status = 2;
+          this.walkAway = true;
+        }
+      }
+
+      if(this.startPosition.x === 750 || this.startPosition.x === 800){
+        if(this.position.x < 850){
+          
+        this.position.x++;
+        $('.person' + '#' + this.id ).attr('x', this.position.x);
+
+      }else if (this.position.y < 675){
+   
+      this.position.y++;
+      $('.person' + '#' + this.id ).attr('y', this.position.y);
+
+        }else{
+
+          this.status = 2;
+          this.walkAway = true;
+        }
+      }
+      ////
+
+      if(this.startPosition.x === 900 || this.startPosition.x === 950){
+        if(this.position.x > 850){
+          
+        this.position.x--;
+        $('.person' + '#' + this.id ).attr('x', this.position.x);
+
+      }else if (this.position.y < 675){
+   
+      this.position.y++;
+      $('.person' + '#' + this.id ).attr('y', this.position.y);
+
+        }else{
+
+          this.status = 2;
+          this.walkAway = true;
+        }
+      }
+
+      if(this.startPosition.x === 1000 || this.startPosition.x === 1050){
+        if(this.position.x < 1100){
+          
+        this.position.x++;
+        $('.person' + '#' + this.id ).attr('x', this.position.x);
+
+      }else if (this.position.y < 675){
+   
+      this.position.y++;
+      $('.person' + '#' + this.id ).attr('y', this.position.y);
+
+        }else{
+
+          this.status = 2;
+          this.walkAway = true;
+        }
+      }
+
+      if(this.startPosition.x === 1150 || this.startPosition.x === 1200){
+        if(this.position.x > 1100){
+          
+        this.position.x--;
+        $('.person' + '#' + this.id ).attr('x', this.position.x);
+
+      }else if (this.position.y < 675){
+   
+      this.position.y++;
+      $('.person' + '#' + this.id ).attr('y', this.position.y);
+
+        }else{
+
+          this.status = 2;
+          this.walkAway = true;
+        }
+      }
+
+
+    }
+  }
+
+    else{
+      if(this.startPosition.x <700){
+        this.position.x--;
+
+      }else{
+        this.position.x++;
+      }
+    
+      //$('.person' + '#' + this.id).attr("transform", "translate(30) rotate(-45 25 25)");
+          
+      $('.person' + '#' + this.id ).attr('x', this.position.x);
+    }
+
+
+
+    requestAnimationFrame(() => this._move());
+  }
+
+  setPosition(position){
+    this.position.x= position.x;
+    $('.person' + '#' + this.id ).attr('x', this.position.x);
+
+    this.position.y= position.y;
+    $('.person' + '#' + this.id ).attr('x', this.position.y);
+  }
+
+  
 
 }
