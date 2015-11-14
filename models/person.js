@@ -6,5 +6,5 @@ module.exports = {
   status: Status.on_seat,
   type: 1,
   happy: false,
-  startPosition: {x:0, y:0}
+  startPosition: {x: 0, y: 0}
 };

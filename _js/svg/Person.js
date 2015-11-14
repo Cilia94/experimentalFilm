@@ -24,6 +24,7 @@ export default class Person {
     this.happy = object.happy;
     this.position = position;
     this.walkAway = false;
+    this.mayMove = true;
     //console.log(startPosi.y);
     
     //this.startPosition= {xPos,yPos};
@@ -88,6 +89,15 @@ export default class Person {
 
     _move(){
 
+      if(this.mayMove){
+
+      if(this.position.x < -60 || this.position.x > 1250){
+
+        this.setStatus(3);
+        this.mayMove = false;
+
+      }
+
       // $('.person' + '#' + this.id).attr("transform", "translate(100) rotate(-45 25 25)");
 
       if(!this.walkAway){
@@ -95,7 +105,7 @@ export default class Person {
       if(this.position.y < (this.startPosition.y +30)){
       this.position.y++;
 
-      $('.person' + '#' + this.id ).attr('y', this.position.y);
+      $(`.person#${this.id}`).attr('y', this.position.y);
 
     }else {
 
@@ -105,12 +115,12 @@ export default class Person {
         if(this.position.x < 100){
           
         this.position.x++;
-        $('.person' + '#' + this.id ).attr('x', this.position.x);
+        $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
    
       this.position.y++;
-      $('.person' + '#' + this.id ).attr('y', this.position.y);
+      $(`.person#${this.id}`).attr('y', this.position.y);
 
         }else{
 
@@ -123,12 +133,12 @@ export default class Person {
         if(this.position.x > 100){
           
         this.position.x--;
-        $('.person' + '#' + this.id ).attr('x', this.position.x);
+        $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
    
       this.position.y++;
-      $('.person' + '#' + this.id ).attr('y', this.position.y);
+      $(`.person#${this.id}`).attr('y', this.position.y);
 
         }else{
 
@@ -143,12 +153,12 @@ export default class Person {
         if(this.position.x < 350){
           
         this.position.x++;
-        $('.person' + '#' + this.id ).attr('x', this.position.x);
+        $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
    
       this.position.y++;
-      $('.person' + '#' + this.id ).attr('y', this.position.y);
+      $(`.person#${this.id}`).attr('y', this.position.y);
 
         }else{
 
@@ -161,12 +171,12 @@ export default class Person {
         if(this.position.x > 350){
           
         this.position.x--;
-        $('.person' + '#' + this.id ).attr('x', this.position.x);
+        $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
    
       this.position.y++;
-      $('.person' + '#' + this.id ).attr('y', this.position.y);
+      $(`.person#${this.id}`).attr('y', this.position.y);
 
         }else{
 
@@ -179,12 +189,12 @@ export default class Person {
         if(this.position.x < 600){
           
         this.position.x++;
-        $('.person' + '#' + this.id ).attr('x', this.position.x);
+        $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
    
       this.position.y++;
-      $('.person' + '#' + this.id ).attr('y', this.position.y);
+      $(`.person#${this.id}`).attr('y', this.position.y);
 
         }else{
 
@@ -197,12 +207,12 @@ export default class Person {
         if(this.position.x > 600){
           
         this.position.x--;
-        $('.person' + '#' + this.id ).attr('x', this.position.x);
+        $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
    
       this.position.y++;
-      $('.person' + '#' + this.id ).attr('y', this.position.y);
+      $(`.person#${this.id}`).attr('y', this.position.y);
 
         }else{
 
@@ -215,12 +225,12 @@ export default class Person {
         if(this.position.x < 850){
           
         this.position.x++;
-        $('.person' + '#' + this.id ).attr('x', this.position.x);
+        $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
    
       this.position.y++;
-      $('.person' + '#' + this.id ).attr('y', this.position.y);
+      $(`.person#${this.id}`).attr('y', this.position.y);
 
         }else{
 
@@ -234,12 +244,12 @@ export default class Person {
         if(this.position.x > 850){
           
         this.position.x--;
-        $('.person' + '#' + this.id ).attr('x', this.position.x);
+        $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
    
       this.position.y++;
-      $('.person' + '#' + this.id ).attr('y', this.position.y);
+      $(`.person#${this.id}`).attr('y', this.position.y);
 
         }else{
 
@@ -252,12 +262,12 @@ export default class Person {
         if(this.position.x < 1100){
           
         this.position.x++;
-        $('.person' + '#' + this.id ).attr('x', this.position.x);
+        $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
    
       this.position.y++;
-      $('.person' + '#' + this.id ).attr('y', this.position.y);
+      $(`.person#${this.id}`).attr('y', this.position.y);
 
         }else{
 
@@ -270,12 +280,12 @@ export default class Person {
         if(this.position.x > 1100){
           
         this.position.x--;
-        $('.person' + '#' + this.id ).attr('x', this.position.x);
+        $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
    
       this.position.y++;
-      $('.person' + '#' + this.id ).attr('y', this.position.y);
+      $(`.person#${this.id}`).attr('y', this.position.y);
 
         }else{
 
@@ -286,9 +296,7 @@ export default class Person {
 
 
     }
-  }
-
-    else{
+  }else{
       if(this.startPosition.x <700){
         this.position.x--;
 
@@ -298,20 +306,54 @@ export default class Person {
     
       //$('.person' + '#' + this.id).attr("transform", "translate(30) rotate(-45 25 25)");
           
-      $('.person' + '#' + this.id ).attr('x', this.position.x);
+      $(`.person#${this.id}`).attr('x', this.position.x);
     }
 
 
-
+    if(!this.happy){
     requestAnimationFrame(() => this._move());
   }
+  }
+}
 
   setPosition(position){
     this.position.x= position.x;
-    $('.person' + '#' + this.id ).attr('x', this.position.x);
+    $(`.person#${this.id}`).attr('x', this.position.x);
 
     this.position.y= position.y;
-    $('.person' + '#' + this.id ).attr('x', this.position.y);
+    $(`.person#${this.id}`).attr('y', this.position.y);
+  }
+
+  makeHappy(position){
+    this.position.x= position.x;
+    $(`.person#${this.id}`).attr('x', this.position.x);
+
+    this.position.y= position.y;
+    $(`.person#${this.id}`).attr('y', this.position.y);
+
+    this.happy = true;
+    this.status = 4;
+  }
+
+  setStatus(status){
+    switch (status){
+      case 1:
+      this.status = 1;
+      break;
+
+      case 2:
+      this.status = 2;
+      break;
+
+      case 3:
+      this.status = 3;
+      break;
+
+      case 4:
+      this.status = 4;
+      break;
+    }
+    
   }
 
   
