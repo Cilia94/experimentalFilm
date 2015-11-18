@@ -26,7 +26,7 @@ export default class Person {
     this.walkAway = false;
     this.mayMove = true;
     //console.log(startPosi.y);
-    
+
     //this.startPosition= {xPos,yPos};
     this.startPosition = {};
     this.startPosition.x = startPosition.x;
@@ -37,7 +37,7 @@ export default class Person {
 
   render(){
     //console.log('render');
-    
+
 
     let svgTemplate;
 
@@ -113,12 +113,12 @@ export default class Person {
 
       if(this.startPosition.x === 0 || this.startPosition.x === 50){
         if(this.position.x < 100){
-          
+
         this.position.x++;
         $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
-   
+
       this.position.y++;
       $(`.person#${this.id}`).attr('y', this.position.y);
 
@@ -131,12 +131,12 @@ export default class Person {
 
       if(this.startPosition.x === 150 || this.startPosition.x === 200){
         if(this.position.x > 100){
-          
+
         this.position.x--;
         $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
-   
+
       this.position.y++;
       $(`.person#${this.id}`).attr('y', this.position.y);
 
@@ -147,16 +147,16 @@ export default class Person {
         }
       }
 
-     
+
 
       if(this.startPosition.x === 250 || this.startPosition.x === 300){
         if(this.position.x < 350){
-          
+
         this.position.x++;
         $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
-   
+
       this.position.y++;
       $(`.person#${this.id}`).attr('y', this.position.y);
 
@@ -169,12 +169,12 @@ export default class Person {
 
       if(this.startPosition.x === 400 || this.startPosition.x === 450){
         if(this.position.x > 350){
-          
+
         this.position.x--;
         $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
-   
+
       this.position.y++;
       $(`.person#${this.id}`).attr('y', this.position.y);
 
@@ -187,12 +187,12 @@ export default class Person {
 
       if(this.startPosition.x === 500 || this.startPosition.x === 550){
         if(this.position.x < 600){
-          
+
         this.position.x++;
         $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
-   
+
       this.position.y++;
       $(`.person#${this.id}`).attr('y', this.position.y);
 
@@ -205,12 +205,12 @@ export default class Person {
 
       if(this.startPosition.x === 650 || this.startPosition.x === 700){
         if(this.position.x > 600){
-          
+
         this.position.x--;
         $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
-   
+
       this.position.y++;
       $(`.person#${this.id}`).attr('y', this.position.y);
 
@@ -223,12 +223,12 @@ export default class Person {
 
       if(this.startPosition.x === 750 || this.startPosition.x === 800){
         if(this.position.x < 850){
-          
+
         this.position.x++;
         $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
-   
+
       this.position.y++;
       $(`.person#${this.id}`).attr('y', this.position.y);
 
@@ -242,12 +242,12 @@ export default class Person {
 
       if(this.startPosition.x === 900 || this.startPosition.x === 950){
         if(this.position.x > 850){
-          
+
         this.position.x--;
         $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
-   
+
       this.position.y++;
       $(`.person#${this.id}`).attr('y', this.position.y);
 
@@ -260,12 +260,12 @@ export default class Person {
 
       if(this.startPosition.x === 1000 || this.startPosition.x === 1050){
         if(this.position.x < 1100){
-          
+
         this.position.x++;
         $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
-   
+
       this.position.y++;
       $(`.person#${this.id}`).attr('y', this.position.y);
 
@@ -278,12 +278,12 @@ export default class Person {
 
       if(this.startPosition.x === 1150 || this.startPosition.x === 1200){
         if(this.position.x > 1100){
-          
+
         this.position.x--;
         $(`.person#${this.id}`).attr('x', this.position.x);
 
       }else if (this.position.y < 675){
-   
+
       this.position.y++;
       $(`.person#${this.id}`).attr('y', this.position.y);
 
@@ -303,9 +303,9 @@ export default class Person {
       }else{
         this.position.x++;
       }
-    
+
       //$('.person' + '#' + this.id).attr("transform", "translate(30) rotate(-45 25 25)");
-          
+
       $(`.person#${this.id}`).attr('x', this.position.x);
     }
 
@@ -353,9 +353,9 @@ export default class Person {
       this.status = 4;
       break;
     }
-    
+
   }
 
-  
+
 
 }

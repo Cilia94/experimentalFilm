@@ -14,7 +14,6 @@ let speed,
 export default class Popcorn {
 
   constructor(buttonPin, count){
-
     this.class = count;
 
     aisle1 = 110; //pin 2 = button 1
@@ -52,8 +51,7 @@ export default class Popcorn {
   }
 
   _move(){
-
-    speed = 5;
+    speed = 7;
 
     let tag = `.popcorn${this.class}`;
 
