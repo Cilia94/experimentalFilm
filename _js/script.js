@@ -9,12 +9,20 @@
 
 let socket,
   $svg,
-  releasePersonsSec;
+  releasePersonsSec,
+  releaseBool,
+  gameStart;
+
+let startTime;
 
 let persons,
   personsLeaving,
   seats,
   peopleLeft;
+
+let intervalTime,
+    intervalRelease,
+    intervalCheck;
 
 let popcorns = [];
 
@@ -23,8 +31,9 @@ import {Person, Seat, Popcorn} from './svg/';
 import personObject from '../models/person.js';
 
 const init = () => {
-  $svg = $('.cinema');
+  gameStart = false;
 
+  $svg = $('.cinema');
 
   socket = io.connect('http://localhost:3000');
 
@@ -32,40 +41,92 @@ const init = () => {
 };
 
 const resetGame = () => {
+  gameStart = false;
+
   personsLeaving = [];
   peopleLeft = [];
   popcorns = [];
   releasePersonsSec = 5000;
+  releaseBool = true;
 
-  _initSeats();
-  _initPersons();
-  _boardConnect();
+  boardConnect();
 };
 
-const _boardConnect = () => {
+const boardConnect = () => {
   socket.on('boardConnect', () => {
     $('.connected').attr('fill', 'green');
     $('.connectedTxt').text('Connection');
 
-    _pressedButton();
-
-    checkCollision();
-
-    setInterval(checkLeftPeople, 1000);
-
-    personMoves();
-
-    setInterval(personMoves, releasePersonsSec);
-
-    for(var i=0; i<personsLeaving.length; i++) {
-      if(personsLeaving[i].position.x < 0 || personsLeaving[i].position.x > 1250){
-        peopleLeft.push(personsLeaving[i]);
-        personsLeaving[i].setStatus(3);
-        personsLeaving.splice(personsLeaving[i]);
-        $('.peopleLeftTxt').text(String(peopleLeft.length));
-      }
+    if(gameStart === false){
+      pressedIntro();
     }
   });
+};
+
+const startGameNow = () => {
+  pressedButton();
+  checkCollision();
+  personMoves();
+
+  intervalRelease = setInterval(personMoves, releasePersonsSec);
+  intervalCheck = setInterval(checkLeftPeople, 1000);
+
+  countTime();
+
+  //check number of persons who left
+  for(var i=0; i<personsLeaving.length; i++) {
+    if(personsLeaving[i].position.x < 0 || personsLeaving[i].position.x > 1250){
+      peopleLeft.push(personsLeaving[i]);
+      personsLeaving[i].setStatus(3);
+      personsLeaving.splice(personsLeaving[i]);
+      $('.peopleLeftTxt').text(String(peopleLeft.length));
+    }
+  }
+};
+
+const reset = () => {
+  console.log('reset');
+  let restart = 10;
+
+  setInterval(() => {
+    restart--;
+    $('.restart').text(restart);
+  }, 1000);
+
+  setTimeout(() => {
+    window.location.reload();
+  }, 10000);
+};
+
+const finishGame = () => {
+  //dropdown
+  console.log('finished game');
+  clearInterval(intervalTime);
+  clearInterval(intervalRelease);
+  clearInterval(intervalCheck);
+
+  setTimeout(() => {
+    $('.gameTime').nextAll().remove();
+  }, 1000);
+
+  reset();
+
+  return;
+};
+
+const countTime = () => {
+  startTime = 10;
+
+  intervalTime = setInterval(() => {
+    if(startTime > 0){
+      startTime--;
+      $('.gameTime').text(`time: ${startTime}`);
+    }else{
+      finishGame();
+      $('.end').addClass('opEnd');
+      return;
+    }
+  }, 1000);
 };
 
 const personMoves = () => {
@@ -88,36 +149,39 @@ const checkLeftPeople = () => {
       peopleLeft.push(personsLeaving[i]);
       $(`.person#${personsLeaving[i].id}`).remove();
     }
-    //console.log(`peopleLeft array: ${peopleLeft}`);
-
-    //console.log(`personsLeaving array: ${personsLeaving}`);
 
     $('.peopleLeftTxt').text(String(peopleLeft.length));
   }
 
-  switch(personsLeaving.length){
-    case 10:
-    releasePersonsSec-=500;
-      break;
-    case 20:
-    releasePersonsSec-=500;
-      break;
-    case 30:
-    releasePersonsSec-=500;
-      break;
-    case 40:
-    releasePersonsSec-=500;
-      break;
-  }
-
-  console.log(releasePersonsSec, personsLeaving.length);
+  console.log(`Release person after: ${releasePersonsSec}ms`);
 };
 
-const _pressedButton = () => {
+const pressedIntro = () => {
+    socket.on('pressed', (buttonPin) => {
+      if(gameStart === false){
+        if(buttonPin === 7){
+          _initSeats();
+          _initPersons();
+
+          gameStart = true;
+
+          $('.start').addClass('opStart');
+          $('.end').removeClass('opEnd');
+
+          setTimeout(() => {
+            startGameNow();
+            $('.start').addClass('hidden');
+          }, 2000);
+        }
+      }
+    });
+};
+
+const pressedButton = () => {
   let count = 0;
 
-  socket.on('pressed', (buttonPin, buttonId) => {
-    //console.log(`Pressed button connected to pin: ${buttonPin} with id: ${buttonId}`);
+  socket.on('pressed', (buttonPin) => {
+    console.log(`Pressed button connected to pin: ${buttonPin}`);
 
     count++;
 
@@ -142,9 +206,17 @@ const checkCollision = () => {
 
         popcorns.splice(popcorns[j]);
 
-        //personMoves();
+        if(releaseBool){
+          personMoves();
+          releaseBool = false;
+        }else {
+          releaseBool = true;
+        }
 
-        //releasePersonsSec-=200; //mssn iets te veel
+        if(releasePersonsSec > 3500){
+          releasePersonsSec-=100;
+        }
+
       }
 
     }

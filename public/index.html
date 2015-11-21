@@ -8,20 +8,30 @@
 <body>
   <main>
     <div class="container">
-        <svg xmlns="http://www.w3.org/2000/svg"
-           xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-           width="1250px" height="750px" viewport="0 0 1250px 750px" class="cinema">
+      <div class="end">
+        <div class="endMessage">
+          <h1>Goed gedaan! Het spel start opnieuw over <span class="restart">10</span></h1>
+        </div>
+      </div>
 
-          <title>Help JEFF!</title>
+      <div class="start">
+        <h1>Druk op de witte knop om te starten!</h1>
+      </div>
 
-          <circle cx="15" cy="15" r="10" fill="red" class="connected"/>
-          <text x="30" y="19" fill="white" class="connectedTxt">No connection</text>
-          <text x="30" y="39" fill="white" class="peopleLeftTxt">0</text>
-          <text x="45" y="39" fill="white" class="peopleTxt">people have left</text>
-        </svg>
+      <svg xmlns="http://www.w3.org/2000/svg"
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+         width="1250px" height="750px" viewport="0 0 1250px 750px" class="cinema">
+
+        <title>Help JEFF!</title>
+
+        <circle cx="15" cy="15" r="10" fill="red" class="connected"/>
+        <text x="30" y="19" fill="white" class="connectedTxt">No connection</text>
+        <text x="30" y="39" fill="white" class="peopleLeftTxt">0</text>
+        <text x="45" y="39" fill="white" class="peopleTxt">people have left</text>
+        <text x="30" y="59" fill="white" class="gameTime">time: 60</text>
+      </svg>
     </div>
   </main>
-  <script src="/js/moment.js"></script>
   <script src="/js/jquery-2.1.4.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/script.js"></script>

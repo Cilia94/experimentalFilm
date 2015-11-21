@@ -36,23 +36,23 @@ module.exports.register = (server, options, next) => {
     });
 
     button1.on('down', () => {
-      socket.emit('pressed', button1.pin, button1.id);
+      socket.emit('pressed', button1.pin);
     });
 
     button2.on('down', () => {
-      socket.emit('pressed', button2.pin, button2.id);
+      socket.emit('pressed', button2.pin);
     });
 
     button3.on('down', () => {
-      socket.emit('pressed', button3.pin, button3.id);
+      socket.emit('pressed', button3.pin);
     });
 
     button4.on('down', () => {
-      socket.emit('pressed', button4.pin, button4.id);
+      socket.emit('pressed', button4.pin);
     });
 
     button5.on('down', () => {
-      socket.emit('pressed', button5.pin, button5.id);
+      socket.emit('pressed', button5.pin);
     });
   };
 

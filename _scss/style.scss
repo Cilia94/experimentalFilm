@@ -16,8 +16,40 @@ body {
   margin: 0px auto;
 }
 
-/*.groupInTag{
-   transform: rotate(0deg);
-   transform-origin: 50% 50%;
-   transition: transform 6s;
-}*/
+.start {
+  background-color: red;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  opacity: 1;
+  transition-timing-function: ease-in;
+  transition: opacity 1s;
+}
+
+.end {
+  background-color: red;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  opacity: 0;
+  transition-timing-function: ease-in;
+  transition: opacity 1s;
+}
+
+
+//animatie
+.opStart {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.opEnd {
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+
+//other main classes
+.hidden {
+  display: none;
+}
