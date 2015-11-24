@@ -13,12 +13,13 @@ let socket,
   releaseBool,
   gameStart;
 
-let startTime;
+let startTime = 60;
 
 let persons,
   personsLeaving,
   seats,
-  peopleLeft;
+  peopleLeft,
+  counter;
 
 let intervalTime,
     intervalRelease,
@@ -48,6 +49,7 @@ const resetGame = () => {
   popcorns = [];
   releasePersonsSec = 5000;
   releaseBool = true;
+  counter = 0;
 
   boardConnect();
 };
@@ -115,15 +117,14 @@ const finishGame = () => {
 };
 
 const countTime = () => {
-  startTime = 10;
-
   intervalTime = setInterval(() => {
     if(startTime > 0){
       startTime--;
-      $('.gameTime').text(`time: ${startTime}`);
+      $('.gameTime').text(`Time: ${startTime}`);
     }else{
       finishGame();
       $('.end').addClass('opEnd');
+      $('.holded').text(counter);
       return;
     }
   }, 1000);
@@ -206,6 +207,10 @@ const checkCollision = () => {
 
         popcorns.splice(popcorns[j]);
 
+        counter++;
+
+        $('.hitPeople').text(`Hit: ${counter} persons`);
+
         if(releaseBool){
           personMoves();
           releaseBool = false;
@@ -214,7 +219,7 @@ const checkCollision = () => {
         }
 
         if(releasePersonsSec > 3500){
-          releasePersonsSec-=100;
+          releasePersonsSec-=200;
         }
 
       }
