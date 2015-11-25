@@ -11,16 +11,21 @@ let socket,
   $svg,
   releasePersonsSec,
   releaseBool,
+  curtain,
   gameStart;
 
 let startTime = 60;
 let audio, music;
 
 let persons,
+  curtains,
+  cannons,
   personsLeaving,
   seats,
   peopleLeft,
   counter;
+
+  let cups = [];
 
 let intervalTime,
     intervalRelease,
@@ -28,7 +33,7 @@ let intervalTime,
 
 let popcorns = [];
 
-import {Person, Seat, Popcorn} from './svg/';
+import {Person, Cannon, Curtain, Cup, Seat, Popcorn} from './svg/';
 
 import personObject from '../models/person.js';
 
@@ -262,6 +267,7 @@ const checkCollision = () => {
         popcorns.splice(popcorns[j]);
 
         counter++;
+        popcornHappy(personsLeaving[i]);
 
         $('.hitPeople').text(`Hit: ${counter} persons`);
 
@@ -284,6 +290,18 @@ const checkCollision = () => {
   requestAnimationFrame(() => checkCollision());
 };
 
+
+const popcornHappy = (person) => {
+
+    let cup = new Cup(person.startPosition.x, person.startPosition.y);
+    cups.push(cup);
+
+    console.log(cups);
+    $svg.append(cup.render());
+
+}
+
+
 const _initPersons = () => {
   persons = [];
 
@@ -304,9 +322,29 @@ const _initPersons = () => {
 
 const _initSeats = () => {
   seats = [];
+  cannons = [];
+  curtains = [];
+
 
   let gridWidth = $svg.width();
   let gridHeight = 650;
+
+  for(var i = 75; i < gridWidth; i += 250){
+    let cannon = new Cannon(i);
+    cannons.push(cannon);
+    $svg.append(cannon.render());
+  }
+
+  for(var x = 0; x <= gridWidth; x += gridWidth){
+
+    if(x > gridWidth){
+      curtain = new Curtain(x, 1);
+    } else {
+      curtain = new Curtain(x, 2);
+    }
+    curtains.push(curtain);
+    $svg.append(curtain.render());
+  }
 
   for(var i = 0; i < gridWidth; i += 50){
 
