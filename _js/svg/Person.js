@@ -95,6 +95,8 @@ export default class Person {
 
         this.setStatus(3);
         this.mayMove = false;
+        $('.sound').attr('src', '/assets/sound/doorOpenClose.mp3')
+        document.querySelector('.sound').play();
 
       }
 

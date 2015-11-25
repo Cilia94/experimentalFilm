@@ -14,6 +14,7 @@ let socket,
   gameStart;
 
 let startTime = 60;
+let audio, music;
 
 let persons,
   personsLeaving,
@@ -33,12 +34,17 @@ import personObject from '../models/person.js';
 
 const init = () => {
   gameStart = false;
+  music = document.querySelector('.bgMusic')
+  audio = document.querySelector('.sound')
+
 
   $svg = $('.cinema');
 
   socket = io.connect('http://localhost:3000');
 
   resetGame();
+
+
 };
 
 const resetGame = () => {
@@ -52,6 +58,7 @@ const resetGame = () => {
   counter = 0;
 
   boardConnect();
+
 };
 
 const boardConnect = () => {
@@ -65,10 +72,29 @@ const boardConnect = () => {
   });
 };
 
+const play = (file) => {
+    
+    var src= file;
+
+    if(audio.canPlayType('audio/mp4; codecs="mp4a.40.2')){
+      src += ".mp3";
+
+    }else if(audio.canPlayType('audio/ogg; codecs="vorbis"')){
+      src += ".ogg"; 
+    }
+
+    audio.setAttribute('src', 'assets/sound/'+src);
+    audio.play();
+
+  }
+
 const startGameNow = () => {
+  //$('.bgMusic').play();
+  
   pressedButton();
   checkCollision();
   personMoves();
+  playMusic();
 
   intervalRelease = setInterval(personMoves, releasePersonsSec);
   intervalCheck = setInterval(checkLeftPeople, 1000);
@@ -141,6 +167,30 @@ const personMoves = () => {
   }
 };
 
+
+  const playMusic = () => {
+
+    var src= "bgMusic";
+    
+    if(music.canPlayType('audio/mp4; codecs="mp4a.40.2')){
+      src += ".mp3";
+
+    }else if(music.canPlayType('audio/ogg; codecs="vorbis"')){
+      src += ".ogg"; 
+    }
+
+    music.setAttribute('src', 'assets/sound/'+src);
+    music.volume = 0.1;
+    music.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+}, false);
+    music.play();
+
+
+}
+  
+
 const checkLeftPeople = () => {
 
   peopleLeft = [];
@@ -148,6 +198,8 @@ const checkLeftPeople = () => {
   for(var i=0; i< personsLeaving.length; i++) {
     if(personsLeaving[i].status === 3){
       peopleLeft.push(personsLeaving[i]);
+          //console.log('people');
+      
       $(`.person#${personsLeaving[i].id}`).remove();
     }
 
@@ -161,6 +213,7 @@ const pressedIntro = () => {
     socket.on('pressed', (buttonPin) => {
       if(gameStart === false){
         if(buttonPin === 7){
+          document.querySelector('video').pause();
           _initSeats();
           _initPersons();
 
@@ -200,6 +253,7 @@ const checkCollision = () => {
     for(var j=0; j<popcorns.length; j++) {
 
       if(boxCollides(popcorns[j].position, size, personsLeaving[i].position, size)) {
+        play('hitSound');
         personsLeaving[i].makeHappy(personsLeaving[i].startPosition);
         personsLeaving[i].happy = true;
 
