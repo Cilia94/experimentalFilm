@@ -78,14 +78,14 @@ const boardConnect = () => {
 };
 
 const play = (file) => {
-    
+
     var src= file;
 
     if(audio.canPlayType('audio/mp4; codecs="mp4a.40.2')){
       src += ".mp3";
 
     }else if(audio.canPlayType('audio/ogg; codecs="vorbis"')){
-      src += ".ogg"; 
+      src += ".ogg";
     }
 
     audio.setAttribute('src', 'assets/sound/'+src);
@@ -95,7 +95,7 @@ const play = (file) => {
 
 const startGameNow = () => {
   //$('.bgMusic').play();
-  
+
   pressedButton();
   checkCollision();
   personMoves();
@@ -176,12 +176,12 @@ const personMoves = () => {
   const playMusic = () => {
 
     var src= "bgMusic";
-    
+
     if(music.canPlayType('audio/mp4; codecs="mp4a.40.2')){
       src += ".mp3";
 
     }else if(music.canPlayType('audio/ogg; codecs="vorbis"')){
-      src += ".ogg"; 
+      src += ".ogg";
     }
 
     music.setAttribute('src', 'assets/sound/'+src);
@@ -194,7 +194,7 @@ const personMoves = () => {
 
 
 }
-  
+
 
 const checkLeftPeople = () => {
 
@@ -204,7 +204,7 @@ const checkLeftPeople = () => {
     if(personsLeaving[i].status === 3){
       peopleLeft.push(personsLeaving[i]);
           //console.log('people');
-      
+
       $(`.person#${personsLeaving[i].id}`).remove();
     }
 
