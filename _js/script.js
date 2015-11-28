@@ -71,6 +71,8 @@ const boardConnect = () => {
     $('.connected').attr('fill', 'green');
     $('.connectedTxt').text('Connection');
 
+    socket.emit('led');
+
     if(gameStart === false){
       pressedIntro();
     }
@@ -217,6 +219,8 @@ const checkLeftPeople = () => {
 const pressedIntro = () => {
     socket.on('pressed', (buttonPin) => {
       if(gameStart === false){
+        socket.emit('ledStop');
+
         if(buttonPin === 7){
           document.querySelector('video').pause();
           _initSeats();
@@ -379,8 +383,3 @@ const boxCollides = (pos, size, pos2, size2) => {
 };
 
 init();
-
-/*$('.testbutton').click( e => {
-    socket.emit('led');
-    e.preventDefault();
-  });*/

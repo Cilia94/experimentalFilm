@@ -12,7 +12,7 @@ module.exports.register = (server, options, next) => {
     io.on('connection', socket => {
       socket.emit('boardConnect');
 
-      //ledUse(socket);
+      ledUse(socket);
       buttonUse(socket);
 
     });
@@ -56,15 +56,37 @@ module.exports.register = (server, options, next) => {
     });
   };
 
-  /*const ledUse = (socket) => {
+  const ledUse = (socket) => {
 
-    let led = new five.Led(13);
+    let led1 = new five.Led(3);
+    let led2 = new five.Led(5);
+    let led3 = new five.Led(6);
+    let led4 = new five.Led(9);
+    let led5 = new five.Led(10);
 
     socket.on('led', () => {
-      led.toggle();
+      led1.pulse(1500);
+      led2.pulse(1500);
+      led3.pulse(1500);
+      led4.pulse(1500);
+      led5.pulse(1500);
     });
 
-  };*/
+    socket.on('ledStop', () => {
+      led1.stop().off();
+      led2.stop().off();
+      led3.stop().off();
+      led4.stop().off();
+      led5.stop().off();
+
+      led1.on();
+      led2.on();
+      led3.on();
+      led4.on();
+      led5.on();
+    });
+
+  };
 
   next();
 
