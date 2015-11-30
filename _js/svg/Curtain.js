@@ -1,7 +1,7 @@
 'use strict';
 
 let yStart = 720;
-let id = 1;
+//let id = 1;
 
 import curtain1 from '../../_hbs/curtain1.hbs';
 import curtain2 from '../../_hbs/curtain2.hbs';

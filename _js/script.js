@@ -39,8 +39,8 @@ import personObject from '../models/person.js';
 
 const init = () => {
   gameStart = false;
-  music = document.querySelector('.bgMusic')
-  audio = document.querySelector('.sound')
+  music = document.querySelector('.bgMusic');
+  audio = document.querySelector('.sound');
 
 
   $svg = $('.cinema');
@@ -48,8 +48,6 @@ const init = () => {
   socket = io.connect('http://localhost:3000');
 
   resetGame();
-
-
 };
 
 const resetGame = () => {
@@ -63,7 +61,6 @@ const resetGame = () => {
   counter = 0;
 
   boardConnect();
-
 };
 
 const boardConnect = () => {
@@ -80,20 +77,18 @@ const boardConnect = () => {
 };
 
 const play = (file) => {
+  let src= file;
 
-    var src= file;
+  if(audio.canPlayType('audio/mp4; codecs="mp4a.40.2')){
+    src += '.mp3';
 
-    if(audio.canPlayType('audio/mp4; codecs="mp4a.40.2')){
-      src += ".mp3";
-
-    }else if(audio.canPlayType('audio/ogg; codecs="vorbis"')){
-      src += ".ogg";
-    }
-
-    audio.setAttribute('src', 'assets/sound/'+src);
-    audio.play();
-
+  }else if(audio.canPlayType('audio/ogg; codecs="vorbis"')){
+    src += '.ogg';
   }
+
+  audio.setAttribute('src', `assets/sound/${src}`);
+  audio.play();
+};
 
 const startGameNow = () => {
   //$('.bgMusic').play();
@@ -109,7 +104,7 @@ const startGameNow = () => {
   countTime();
 
   //check number of persons who left
-  for(var i=0; i<personsLeaving.length; i++) {
+  for(let i=0; i<personsLeaving.length; i++) {
     if(personsLeaving[i].position.x < 0 || personsLeaving[i].position.x > 1250){
       peopleLeft.push(personsLeaving[i]);
       personsLeaving[i].setStatus(3);
@@ -175,34 +170,32 @@ const personMoves = () => {
 };
 
 
-  const playMusic = () => {
+const playMusic = () => {
+  let src= 'bgMusic';
 
-    var src= "bgMusic";
+  if(music.canPlayType('audio/mp4; codecs="mp4a.40.2')){
+    src += '.mp3';
 
-    if(music.canPlayType('audio/mp4; codecs="mp4a.40.2')){
-      src += ".mp3";
+  }else if(music.canPlayType('audio/ogg; codecs="vorbis"')){
+    src += '.ogg';
+  }
 
-    }else if(music.canPlayType('audio/ogg; codecs="vorbis"')){
-      src += ".ogg";
-    }
-
-    music.setAttribute('src', 'assets/sound/'+src);
-    music.volume = 0.1;
-    music.addEventListener('ended', function() {
+  music.setAttribute('src', `assets/sound/${src}`);
+  music.volume = 0.1;
+  music.addEventListener('ended', () => {
     this.currentTime = 0;
     this.play();
-}, false);
-    music.play();
+  }, false);
 
-
-}
+  music.play();
+};
 
 
 const checkLeftPeople = () => {
 
   peopleLeft = [];
 
-  for(var i=0; i< personsLeaving.length; i++) {
+  for(let i=0; i< personsLeaving.length; i++) {
     if(personsLeaving[i].status === 3){
       peopleLeft.push(personsLeaving[i]);
           //console.log('people');
@@ -256,10 +249,10 @@ const pressedButton = () => {
 };
 
 const checkCollision = () => {
-  for(var i=0; i<personsLeaving.length; i++) {
+  for(let i=0; i<personsLeaving.length; i++) {
     let size = [30, 30];
 
-    for(var j=0; j<popcorns.length; j++) {
+    for(let j=0; j<popcorns.length; j++) {
 
       if(boxCollides(popcorns[j].position, size, personsLeaving[i].position, size)) {
         play('hitSound');
@@ -295,16 +288,13 @@ const checkCollision = () => {
 };
 
 
-const popcornHappy = (person) => {
+const popcornHappy = person => {
+  let cup = new Cup(person.startPosition.x, person.startPosition.y);
+  cups.push(cup);
 
-    let cup = new Cup(person.startPosition.x, person.startPosition.y);
-    cups.push(cup);
-
-    console.log(cups);
-    $svg.append(cup.render());
-
-}
-
+  console.log(cups);
+  $svg.append(cup.render());
+};
 
 const _initPersons = () => {
   persons = [];
@@ -333,13 +323,13 @@ const _initSeats = () => {
   let gridWidth = $svg.width();
   let gridHeight = 650;
 
-  for(var i = 75; i < gridWidth; i += 250){
+  for(let i = 75; i < gridWidth; i += 250){
     let cannon = new Cannon(i);
     cannons.push(cannon);
-    $svg.append(cannon.render());
+    //$svg.append(cannon.render());
   }
 
-  for(var x = 0; x <= gridWidth; x += gridWidth){
+  for(let x = 0; x <= gridWidth; x += gridWidth){
 
     if(x > gridWidth){
       curtain = new Curtain(x, 1);
@@ -350,9 +340,9 @@ const _initSeats = () => {
     $svg.append(curtain.render());
   }
 
-  for(var i = 0; i < gridWidth; i += 50){
+  for(let i = 0; i < gridWidth; i += 50){
 
-    for(var j = 75; j < gridHeight; j += 75){
+    for(let j = 75; j < gridHeight; j += 75){
 
       let seat = new Seat(i, j);
 

@@ -25,11 +25,11 @@ body {
   transition-timing-function: ease-in;
   transition: opacity 1s;
 
-  video 
-{
-    width: 100%;
-    height: auto;
+video {
+  width: 100%;
+  height: auto;
 }
+
 }
 
 .end {
@@ -58,4 +58,12 @@ body {
 //other main classes
 .hidden {
   display: none;
+}
+
+.cannon-row {
+  width: 1039px;
+  height: 30px;
+  display: block;
+  margin: 0px auto;
+  margin-top: -30px;
 }
