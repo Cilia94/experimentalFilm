@@ -44,7 +44,8 @@ const init = () => {
 
   $svg = $('.cinema');
 
-  socket = io.connect('http://localhost:3000');
+  //socket = io.connect('https://localhost:3000'); //development
+  socket = io.connect('https://helpjeff.herokuapp.com/');
 
   resetGame();
 };
