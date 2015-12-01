@@ -4,20 +4,40 @@
   <meta charset="UTF-8">
   <title>Help JEFF!</title><meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+  <script>
+    WebFontConfig = {
+      custom: {
+        families: ['space_bd_btbold'],
+        urls: ['assets/fonts/space_bd_btbold/space_bd_btbold.css']
+      }
+    };
+
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = '/js/vendor/webfontloader.js'; //offline
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
 </head>
 <body>
   <main>
     <div class="container">
       <div class="end">
         <div class="endMessage">
-          <h1>Goed gedaan!<br/>Je hebt <span class="holded">0</span> personen in de zaal gehouden. <br/>Het spel start opnieuw over <span class="restart">10</span>.</h1>
+          <h1>Goed gedaan! </h1>
+          <h2><br/>Je hebt <span class="holded">0</span> personen in de zaal gehouden. </h2>
+          <br/><p>Het spel start opnieuw over <span class="restart">10</span>.</p>
+          <img src="assets/img/astronaut.png" alt="astronaut" class="astro"/>
         </div>
       </div>
 
       <div class="start">
 
         <video autoplay loop>
-    <source src="/assets/video.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+    <source src="/assets/JeffNeedsHelp.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
 
     Video not supported.
 </video>
@@ -41,12 +61,12 @@ Your browser does not support the audio element.
 
         <title>Help JEFF!</title>
 
-        <circle cx="15" cy="15" r="10" fill="red" class="connected"/>
-        <text x="30" y="20" fill="white" class="connectedTxt">No connection</text>
-        <text x="150" y="20" fill="white" class="peopleLeftTxt">0</text>
-        <text x="160" y="20" fill="white" class="peopleTxt">people have left</text>
-        <text x="270" y="20" fill="white" class="gameTime">Time: 60</text>
-        <text x="390" y="20" fill="white" class="hitPeople">Hit: 0 persons</text>
+        <circle cx="15" cy="25" r="10" fill="red" class="connected"/>
+        <!--<text x="30" y="20"  fill="white" class="connectedTxt">No connection</text>-->
+        <text x="55" y="30" fill="white" font-size="15px" class="peopleLeftTxt">0</text>
+        <text x="70" y="30" fill="white" font-size="15px" class="peopleTxt"> Ontsnapte personen</text>
+        <text x="270" y="30" fill="white" font-size="15px" class="gameTime">Tijd: 60</text>
+        <text x="390" y="30" fill="white" font-size="15px" class="hitPeople">0 Gelukkige personen</text>
       </svg>
 
       <img src="assets/cannons.png" height="" width="" alt="" class="cannon-row"/>

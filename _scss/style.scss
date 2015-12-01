@@ -25,21 +25,49 @@ body {
   transition-timing-function: ease-in;
   transition: opacity 1s;
 
-video {
-  width: 100%;
-  height: auto;
+  video {
+    width: 100%;
+    height: auto;
+  }
 }
+.endMessage {
+  font-family: 'space_bd_btbold';
+  color: #f3f5f7;
 
+  h1 {
+    font-size: 6em;
+    margin-bottom: 50px;
+    margin-top: 50px;
+  }
+
+  h2 {
+    font-size: 5em;
+    width: 500px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 100px;
+
+  }
+  p {
+    font-size: 2.3em;
+  }
+
+  .astro {
+    float: right;
+    margin-right: 10%;
+    margin-top: -10%;
+  }
 }
 
 .end {
-  background-color: red;
+  background: url('/assets/img/bgStars.jpg') repeat;
   position: absolute;
   height: 100vh;
   width: 100%;
   opacity: 0;
   transition-timing-function: ease-in;
   transition: opacity 1s;
+  text-align: center;
 }
 
 

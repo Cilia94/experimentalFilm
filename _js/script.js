@@ -11,7 +11,6 @@ let socket,
   $svg,
   releasePersonsSec,
   releaseBool,
-  curtain,
   gameStart;
 
 let startTime = 60;
@@ -148,7 +147,7 @@ const countTime = () => {
   intervalTime = setInterval(() => {
     if(startTime > 0){
       startTime--;
-      $('.gameTime').text(`Time: ${startTime}`);
+      $('.gameTime').text(`Tijd: ${startTime}`);
     }else{
       finishGame();
       $('.end').addClass('opEnd');
@@ -218,6 +217,7 @@ const pressedIntro = () => {
           document.querySelector('video').pause();
           _initSeats();
           _initPersons();
+          _initDecoration();
 
           gameStart = true;
 
@@ -266,7 +266,7 @@ const checkCollision = () => {
         counter++;
         popcornHappy(personsLeaving[i]);
 
-        $('.hitPeople').text(`Hit: ${counter} persons`);
+        $('.hitPeople').text(`${counter} Gelukkige personen`);
 
         if(releaseBool){
           personMoves();
@@ -314,35 +314,43 @@ const _initPersons = () => {
 
 };
 
-const _initSeats = () => {
-  seats = [];
+const _initDecoration = () => {
   cannons = [];
   curtains = [];
 
+  console.log('draw decoration');
+
+  let gridWidth = $svg.width();
+
+  for(var i = 75; i < gridWidth; i += 250){
+    let cannon = new Cannon(i);
+    cannons.push(cannon);
+    $svg.append(cannon.render());
+  }
+
+
+  for(var i = 0; i < gridWidth; i += gridWidth - 42){
+
+    let curtain = new Curtain(i);
+    curtains.push(curtain);
+    $svg.append(curtain.render());
+
+    console.log(curtain.render());
+  }
+
+};
+
+const _initSeats = () => {
+  console.log('draw seats');
+  seats = [];
 
   let gridWidth = $svg.width();
   let gridHeight = 650;
 
-  for(let i = 75; i < gridWidth; i += 250){
-    let cannon = new Cannon(i);
-    cannons.push(cannon);
-    //$svg.append(cannon.render());
-  }
 
-  for(let x = 0; x <= gridWidth; x += gridWidth){
+  for(var i = 0; i < gridWidth; i += 50){
 
-    if(x > gridWidth){
-      curtain = new Curtain(x, 1);
-    } else {
-      curtain = new Curtain(x, 2);
-    }
-    curtains.push(curtain);
-    $svg.append(curtain.render());
-  }
-
-  for(let i = 0; i < gridWidth; i += 50){
-
-    for(let j = 75; j < gridHeight; j += 75){
+    for(var j = 75; j < gridHeight; j += 75){
 
       let seat = new Seat(i, j);
 
