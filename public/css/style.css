@@ -1,0 +1,154 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+main {
+  display: block;
+}
+
+body {
+  font-size: 62.5%;
+  font-family: 'Helvetica neue', Helvetica, Arial, sans-serif;
+  background-color: #302F2F;
+}
+
+.container {
+  width: 100%;
+}
+
+.cinema {
+  width: 1250px;
+  display: block;
+  margin: 0px auto;
+}
+
+.start {
+  background-color: #1E242D;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  opacity: 1;
+  transition-timing-function: ease-in;
+  transition: opacity 1s;
+}
+
+.start video {
+  width: 100%;
+  height: auto;
+}
+
+.endMessage {
+  font-family: 'space_bd_btbold';
+  color: #f3f5f7;
+}
+
+.endMessage h1 {
+  font-size: 6em;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.endMessage h2 {
+  font-size: 5em;
+  width: 500px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 100px;
+}
+
+.endMessage p {
+  font-size: 2.3em;
+}
+
+.endMessage .astro {
+  float: right;
+  margin-right: 10%;
+  margin-top: -10%;
+}
+
+.end {
+  background: url("/assets/img/bgStars.jpg") repeat;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  opacity: 0;
+  transition-timing-function: ease-in;
+  transition: opacity 1s;
+  text-align: center;
+}
+
+.opStart {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.opEnd {
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.hidden {
+  display: none;
+}
+
+.cannon-row {
+  width: 1039px;
+  height: 30px;
+  display: block;
+  margin: 0px auto;
+  margin-top: -30px;
+}
