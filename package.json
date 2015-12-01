@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "webpack --watch & npm run serve",
     "development": "webpack --watch & npm run serve",
-    "production": "webpack -d -p",
+    "production": "webpack -d -p serve",
     "start": "forever --minUptime 1000 --spinSleepTime 1000 .",
     "serve": "nodemon ."
   },
