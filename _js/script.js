@@ -18,7 +18,6 @@ let audio, music;
 
 let persons,
   curtains,
-  cannons,
   personsLeaving,
   seats,
   peopleLeft,
@@ -32,7 +31,7 @@ let intervalTime,
 
 let popcorns = [];
 
-import {Person, Cannon, Curtain, Cup, Seat, Popcorn} from './svg/';
+import {Person, Curtain, Cup, Seat, Popcorn} from './svg/';
 
 import personObject from '../models/person.js';
 
@@ -44,8 +43,8 @@ const init = () => {
 
   $svg = $('.cinema');
 
-  //socket = io.connect('https://localhost:3000'); //development
-  socket = io.connect('https://helpjeff.herokuapp.com/');
+  socket = io.connect('localhost:3000'); //development
+  //socket = io.connect('https://helpjeff.herokuapp.com/');
 
   resetGame();
 };
@@ -115,7 +114,6 @@ const startGameNow = () => {
 };
 
 const reset = () => {
-  console.log('reset');
   let restart = 10;
 
   setInterval(() => {
@@ -130,7 +128,6 @@ const reset = () => {
 
 const finishGame = () => {
   //dropdown
-  console.log('finished game');
   clearInterval(intervalTime);
   clearInterval(intervalRelease);
   clearInterval(intervalCheck);
@@ -198,7 +195,7 @@ const checkLeftPeople = () => {
   for(let i=0; i< personsLeaving.length; i++) {
     if(personsLeaving[i].status === 3){
       peopleLeft.push(personsLeaving[i]);
-          //console.log('people');
+
 
       $(`.person#${personsLeaving[i].id}`).remove();
     }
@@ -206,7 +203,6 @@ const checkLeftPeople = () => {
     $('.peopleLeftTxt').text(String(peopleLeft.length));
   }
 
-  console.log(`Release person after: ${releasePersonsSec}ms`);
 };
 
 const pressedIntro = () => {
@@ -238,7 +234,7 @@ const pressedButton = () => {
   let count = 0;
 
   socket.on('pressed', (buttonPin) => {
-    console.log(`Pressed button connected to pin: ${buttonPin}`);
+
 
     count++;
 
@@ -293,7 +289,6 @@ const popcornHappy = person => {
   let cup = new Cup(person.startPosition.x, person.startPosition.y);
   cups.push(cup);
 
-  console.log(cups);
   $svg.append(cup.render());
 };
 
@@ -316,33 +311,19 @@ const _initPersons = () => {
 };
 
 const _initDecoration = () => {
-  cannons = [];
   curtains = [];
 
-  console.log('draw decoration');
-
   let gridWidth = $svg.width();
-
-  for(var i = 75; i < gridWidth; i += 250){
-    let cannon = new Cannon(i);
-    cannons.push(cannon);
-    $svg.append(cannon.render());
-  }
-
 
   for(var i = 0; i < gridWidth; i += gridWidth - 42){
 
     let curtain = new Curtain(i);
     curtains.push(curtain);
     $svg.append(curtain.render());
-
-    console.log(curtain.render());
   }
-
 };
 
 const _initSeats = () => {
-  console.log('draw seats');
   seats = [];
 
   let gridWidth = $svg.width();

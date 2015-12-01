@@ -17,10 +17,10 @@ export default class Curtain {
 
     // console.log(this.id);
 
-    // this.id = id;
+     this.id = id;
 
     this.type = id;
-    //id++;
+    id++;
 
     console.log('type:', this.type);
 
