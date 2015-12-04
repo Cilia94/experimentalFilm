@@ -168,7 +168,10 @@ const personMoves = () => {
 
 
 const playMusic = () => {
-  let src= 'bgMusic';
+
+  let randomSong = Math.floor(Math.random() * 5) + 1 
+
+  let src= '_bgM' + randomSong;
 
   if(music.canPlayType('audio/mp4; codecs="mp4a.40.2')){
     src += '.mp3';
@@ -178,7 +181,7 @@ const playMusic = () => {
   }
 
   music.setAttribute('src', `assets/sound/${src}`);
-  music.volume = 0.1;
+  //music.volume = 0.1;
   music.addEventListener('ended', () => {
     this.currentTime = 0;
     this.play();
